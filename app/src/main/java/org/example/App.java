@@ -3,12 +3,40 @@
  */
 package org.example;
 
+import java.io.File;
+import java.util.*;
+
+import org.example.struct.Tree;
+
+
 public class App {
-    public String getGreeting() {
-        return "Hello World!";
-    }
+    
 
     public static void main(String[] args) {
-        System.out.println(new App().getGreeting());
+        var tree = new Tree<>(new File("/home"));
+        tree.insert(new File("/home/luispazos"));
+
+        
+        for(var itr = tree.iterator(); itr.hasNext();){
+            File file = itr.next();
+
+            System.out.println(file.getName());
+        }
+
+        File[] list = tree.root.value.listFiles();
+        for (File data : list) {
+            System.out.println(data + " isdirectory? " + data.isDirectory());
+        }
     }
 }
+
+/* FileOrganizer root = new FileOrganizer("/home/luispazos/Descargas/");
+        System.out.println(root.getRoot().getAbsolutePath());
+        System.out.println(root.getRoot().exists());
+        
+        File[] list = root.getRoot().listFiles();
+
+        for (File data : list) {
+            System.out.println(data + "isdirectory?" + data.isDirectory());
+
+        } */
