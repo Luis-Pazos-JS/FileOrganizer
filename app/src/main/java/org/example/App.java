@@ -3,30 +3,24 @@
  */
 package org.example;
 
-import java.io.File;
+
 import java.util.*;
 
-import org.example.struct.Tree;
+import org.example.controllers.FileOrganizer;
+
 
 
 public class App {
     
 
     public static void main(String[] args) {
-        var tree = new Tree<>(new File("/home"));
-        tree.insert(new File("/home/luispazos"));
+        var tree = new FileOrganizer("/home/luispazos/Documentos");
+        //tree.insert(new File("/home/luispazos"));
+        tree.constructTree();
+        
+        tree.showTree();
 
         
-        for(var itr = tree.iterator(); itr.hasNext();){
-            File file = itr.next();
-
-            System.out.println(file.getName());
-        }
-
-        File[] list = tree.root.value.listFiles();
-        for (File data : list) {
-            System.out.println(data + " isdirectory? " + data.isDirectory());
-        }
     }
 }
 

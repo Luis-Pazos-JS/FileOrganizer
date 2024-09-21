@@ -19,7 +19,7 @@ public class Tree<T> implements Iterable<T>{
         return insert(new Node(value));
     }
     public boolean insert(T value, T parent){
-        Node parentNode = searchNode(value);
+        Node parentNode = searchNode(parent);
         Node node = new Node(value);
         if(! insert(node, parentNode)){
 
@@ -40,7 +40,7 @@ public class Tree<T> implements Iterable<T>{
     }
     private boolean insert(Node node, Node parentNode){
         if(parentNode == null) return false;
-        node.parent = parentNode;
+            node.parent = parentNode;
             parentNode.childrens.add(node);
             return true;
         }
