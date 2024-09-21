@@ -18,7 +18,7 @@ public class App {
         //tree.insert(new File("/home/luispazos"));
         tree.constructTree();
         
-        tree.showTree();
+        tree.showTreeInterfaces();
 
         
     }

@@ -2,6 +2,11 @@ package org.example.controllers;
 
 import java.io.File;
 
+import javax.swing.JFrame;
+import javax.swing.JScrollPane;
+import javax.swing.JTree;
+import javax.swing.tree.DefaultMutableTreeNode;
+
 import org.example.struct.Tree;
 
 public class FileOrganizer {
@@ -21,6 +26,17 @@ public class FileOrganizer {
             System.out.println(file.getName());
         }
     }
+    public void showTreeInterfaces(){
+        JFrame frame = new JFrame("Tree Viewer");
+        frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+
+        JTree jtree = new JTree(convertToTreeNode(tree.root));
+        JScrollPane treeView = new JScrollPane(jtree);
+        frame.add(treeView);
+
+        frame.setSize(300, 400);
+        frame.setVisible(true);
+    }
 
     public void constructTree() {
         recurConst(tree.root.value);
@@ -32,12 +48,17 @@ public class FileOrganizer {
 
         if(files != null){
             for(var file : files){
-                
                 tree.insert(file, parent);
-            }
-            for(var file : files){
                 recurConst(file);
             }
         }
     }
+    private static <T> DefaultMutableTreeNode convertToTreeNode(Tree<T>.Node node) {
+        DefaultMutableTreeNode jtreeNode = new DefaultMutableTreeNode(node.value);
+        for (Tree<T>.Node child : node.childrens) {
+            jtreeNode.add(convertToTreeNode(child));
+        }
+        return jtreeNode;
+    }
+
 }

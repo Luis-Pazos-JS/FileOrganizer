@@ -1,4 +1,6 @@
 package org.example.struct;
+import java.io.FileWriter;
+import java.io.IOException;
 import java.util.*;
 
 
@@ -69,7 +71,7 @@ public class Tree<T> implements Iterable<T>{
         }
         return null;
     }
-
+    
     public class Node {
         public Node parent;
         public T value;
@@ -81,7 +83,7 @@ public class Tree<T> implements Iterable<T>{
             childrens = new LinkedList<>();
         }
     }
-
+    
     private class IteratorTree implements Iterator<T> {
         private Stack<Node> pila;
 
